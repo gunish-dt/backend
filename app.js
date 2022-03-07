@@ -18,7 +18,7 @@ app.use(cors({ origin: true, credentials: true }));
 var corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   origin: "*",
-  preflightContinue: false,
+  preflightContinue: true,
   optionsSuccessStatus: 204,
 };
 
