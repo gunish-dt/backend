@@ -19,12 +19,12 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 app.options("*", cors());
 
-app.get("/", (req, res) => res.send("Hello world!"));
+//app.get("/", (req, res) => res.sendStatus(200));
 
 // use Routes
 app.use("/api/books", books);
 
-app.options("/", function (req, res, next) {
+app.get("/", function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "POST");
   res.header("Access-Control-Allow-Headers", "accept, content-type");
