@@ -1,5 +1,3 @@
-// app.js
-
 const express = require("express");
 const connectDB = require("./config/db");
 var cors = require("cors");
@@ -13,27 +11,15 @@ const app = express();
 connectDB();
 
 // cors
-app.use(cors({ origin: false, credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 
 // Init Middleware
 app.use(express.json({ extended: false }));
-app.options("*", cors());
 
-app.get("/", cors(), (req, res) => res.send("Hello world!"));
+app.get("/", (req, res) => res.send("Hello world!"));
 
 // use Routes
 app.use("/api/books", books);
-
-app.options("/", function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-  return res.sendStatus(200);
-});
 
 const port = process.env.PORT || 8082;
 
