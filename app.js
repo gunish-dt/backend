@@ -19,7 +19,7 @@ app.use(cors({ origin: false, credentials: true }));
 app.use(express.json({ extended: false }));
 app.options("*", cors());
 
-app.get("/", (req, res) => res.send("Hello world!"));
+app.get("/", cors(), (req, res) => res.send("Hello world!"));
 
 // use Routes
 app.use("/api/books", books);
