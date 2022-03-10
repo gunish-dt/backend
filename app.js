@@ -17,6 +17,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("Hello world!"));
+app.options("*", cors()); // include before other routes
 
 // use Routes
 app.use("/api/books", books);
