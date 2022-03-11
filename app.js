@@ -18,8 +18,15 @@ app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("Hello world!"));
 app.options("*", cors()); // include before other routes
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, OPTIONS, HEAD");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "access-control-allow-origin,DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,token"
+  );
+  res.header("Access-Control-Max-Age", "1728000");
+  return res.sendStatus(200);
   next();
 });
 
